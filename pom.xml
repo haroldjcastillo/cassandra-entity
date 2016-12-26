@@ -2,13 +2,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.haroldjcastillo</groupId>
+	<groupId>org.haroldjcastillo</groupId>
 	<artifactId>cassandra-entity</artifactId>
 	<version>0.0.1</version>
 
 	<name>Cassandra Entity Manager</name>
-	<description>Cassandra driver for reduce the creation of DTO and Entities of way independet</description>
-
+	<url>https://github.com/haroldjcastillo/cassandra-entity</url>
+	<description>Allows to reduce code and re-create POJO's and Entities, you need to create one class. Reduce the creation of DTO and Entities of way independet.</description>
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
@@ -21,6 +22,14 @@
 		<skipTests>false</skipTests>
 		<runSuite>**/TestSuite.class</runSuite>
 	</properties>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 
 	<dependencies>
 		<dependency>
