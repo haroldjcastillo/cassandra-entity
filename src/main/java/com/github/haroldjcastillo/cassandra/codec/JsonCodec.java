@@ -1,4 +1,4 @@
-package com.haroldjcastillo.cassandra.codec;
+package com.github.haroldjcastillo.cassandra.codec;
 
 import com.datastax.driver.extras.codecs.json.JacksonJsonCodec;
 import com.fasterxml.jackson.databind.JsonNode;

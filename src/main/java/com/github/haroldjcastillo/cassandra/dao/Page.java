@@ -1,7 +1,7 @@
 /*
  * Copyright 2017 (C) Tigo Honduras
  */
-package com.haroldjcastillo.cassandra.dao;
+package com.github.haroldjcastillo.cassandra.dao;
 
 import java.util.UUID;
 

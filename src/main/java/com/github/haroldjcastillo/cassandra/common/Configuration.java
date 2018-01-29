@@ -1,4 +1,4 @@
-package com.haroldjcastillo.cassandra.common;
+package com.github.haroldjcastillo.cassandra.common;
 
 import java.math.BigInteger;
 

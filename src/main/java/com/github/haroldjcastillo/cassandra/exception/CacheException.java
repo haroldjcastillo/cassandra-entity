@@ -1,4 +1,4 @@
-package com.haroldjcastillo.cassandra.exception;
+package com.github.haroldjcastillo.cassandra.exception;
 
 /**
  * The Class CacheException.

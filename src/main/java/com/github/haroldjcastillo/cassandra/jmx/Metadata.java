@@ -1,4 +1,4 @@
-package com.haroldjcastillo.cassandra.jmx;
+package com.github.haroldjcastillo.cassandra.jmx;
 
 /**
  * The MBean object that allows to execute the methods for obtain the metadata

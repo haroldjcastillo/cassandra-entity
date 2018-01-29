@@ -1,4 +1,4 @@
-package com.haroldjcastillo.cassandra.dao;
+package com.github.haroldjcastillo.cassandra.dao;
 
 import static com.datastax.driver.core.querybuilder.QueryBuilder.asc;
 import static com.datastax.driver.core.querybuilder.QueryBuilder.desc;

@@ -1,9 +1,9 @@
-package com.haroldjcastillo.cassandra.jmx;
+package com.github.haroldjcastillo.cassandra.jmx;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
-import com.haroldjcastillo.cassandra.common.Configuration;
+import com.github.haroldjcastillo.cassandra.common.Configuration;
 
 public class ConfigurationBean extends Metadata implements ConfigurationMXBean {
 

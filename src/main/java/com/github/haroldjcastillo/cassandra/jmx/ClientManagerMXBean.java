@@ -1,4 +1,4 @@
-package com.haroldjcastillo.cassandra.jmx;
+package com.github.haroldjcastillo.cassandra.jmx;
 
 /**
  * The Interface ClientManagerMXBean.

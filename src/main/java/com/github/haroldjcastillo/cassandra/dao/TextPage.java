@@ -1,4 +1,4 @@
-package com.haroldjcastillo.cassandra.dao;
+package com.github.haroldjcastillo.cassandra.dao;
 
 import java.io.Serializable;
 import java.util.Arrays;

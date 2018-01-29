@@ -8,8 +8,8 @@ import org.codehaus.jackson.map.ObjectMapper;
 import com.datastax.driver.mapping.annotations.Column;
 import com.datastax.driver.mapping.annotations.PartitionKey;
 import com.datastax.driver.mapping.annotations.Table;
-import com.haroldjcastillo.cassandra.common.ConnectionManager;
-import com.haroldjcastillo.cassandra.dao.EntityBase;
+import com.github.haroldjcastillo.cassandra.common.ConnectionManager;
+import com.github.haroldjcastillo.cassandra.dao.EntityBase;
 
 @Table(keyspace = "test", name = "table_test")
 public class TableTest extends EntityBase<TableTest> {

@@ -1,4 +1,4 @@
-package com.haroldjcastillo.cassandra.jmx;
+package com.github.haroldjcastillo.cassandra.jmx;
 
 import java.lang.management.ManagementFactory;
 

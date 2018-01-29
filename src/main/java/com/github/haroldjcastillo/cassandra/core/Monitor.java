@@ -1,4 +1,4 @@
-package com.haroldjcastillo.cassandra.core;
+package com.github.haroldjcastillo.cassandra.core;
 
 import org.apache.log4j.Logger;
 

@@ -1,4 +1,4 @@
-package com.haroldjcastillo.cassandra.core;
+package com.github.haroldjcastillo.cassandra.core;
 
 import java.io.File;
 import java.util.Hashtable;
@@ -18,10 +18,10 @@ import com.datastax.driver.core.TypeCodec;
 import com.datastax.driver.core.exceptions.CodecNotFoundException;
 import com.datastax.driver.core.policies.ConstantReconnectionPolicy;
 import com.datastax.driver.core.policies.DCAwareRoundRobinPolicy;
-import com.haroldjcastillo.cassandra.codec.JsonCodec;
-import com.haroldjcastillo.cassandra.common.Configuration;
-import com.haroldjcastillo.cassandra.common.ConnectionManager;
-import com.haroldjcastillo.cassandra.jmx.ConfigurationBean;
+import com.github.haroldjcastillo.cassandra.codec.JsonCodec;
+import com.github.haroldjcastillo.cassandra.common.Configuration;
+import com.github.haroldjcastillo.cassandra.common.ConnectionManager;
+import com.github.haroldjcastillo.cassandra.jmx.ConfigurationBean;
 
 /**
  * The Class CassandraSession.

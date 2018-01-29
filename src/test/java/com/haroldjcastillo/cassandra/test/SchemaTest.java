@@ -9,8 +9,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.datastax.driver.core.Session;
-import com.haroldjcastillo.cassandra.common.Configuration;
-import com.haroldjcastillo.cassandra.core.CassandraSession;
+import com.github.haroldjcastillo.cassandra.common.Configuration;
+import com.github.haroldjcastillo.cassandra.core.CassandraSession;
 
 /**
  * The Class SchemaTest, probes the creation of code lines from a specific fila.

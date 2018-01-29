@@ -1,4 +1,4 @@
-package com.haroldjcastillo.cassandra.dao;
+package com.github.haroldjcastillo.cassandra.dao;
 
 import java.util.Collections;
 import java.util.List;
@@ -15,7 +15,7 @@ import com.datastax.driver.core.exceptions.NoHostAvailableException;
 import com.datastax.driver.mapping.MappingManager;
 import com.datastax.driver.mapping.Result;
 import com.datastax.driver.mapping.annotations.Transient;
-import com.haroldjcastillo.cassandra.common.ConnectionManager;
+import com.github.haroldjcastillo.cassandra.common.ConnectionManager;
 
 /**
  * The Class EntityBase.

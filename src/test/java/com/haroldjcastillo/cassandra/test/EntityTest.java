@@ -15,10 +15,10 @@ import com.datastax.driver.core.ConsistencyLevel;
 import com.datastax.driver.core.querybuilder.Delete;
 import com.datastax.driver.core.querybuilder.Select;
 import com.datastax.driver.core.utils.UUIDs;
-import com.haroldjcastillo.cassandra.common.Configuration;
-import com.haroldjcastillo.cassandra.common.ConnectionManager;
-import com.haroldjcastillo.cassandra.core.CassandraSession;
-import com.haroldjcastillo.cassandra.dao.EntityBase;
+import com.github.haroldjcastillo.cassandra.common.Configuration;
+import com.github.haroldjcastillo.cassandra.common.ConnectionManager;
+import com.github.haroldjcastillo.cassandra.core.CassandraSession;
+import com.github.haroldjcastillo.cassandra.dao.EntityBase;
 
 /**
  * The Class EntityTest, probes the functionalities when we need to create a
