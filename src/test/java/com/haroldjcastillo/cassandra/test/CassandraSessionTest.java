@@ -6,8 +6,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.datastax.driver.core.Session;
+import com.haroldjcastillo.cassandra.common.Configuration;
 import com.haroldjcastillo.cassandra.core.CassandraSession;
-import com.haroldjcastillo.cassandra.jmx.Configuration;
 
 public class CassandraSessionTest {
 
@@ -15,15 +15,22 @@ public class CassandraSessionTest {
 	
 	private static Configuration configuration;
 	
+	private static final String TEST = "test";
+	
+	private static final String[] keyspaces = { TEST };
+
 	@BeforeClass
 	public static void beforeClass() {
-		configuration = new Configuration("CassandraSessionTest");
+		configuration = new Configuration("SchemaTest");
+		configuration.setName("CassandraSessionTest");
+		configuration.setKeyspaces(keyspaces);
 	}
 
 	@Test
 	public void session() {
-		final Session session = cassandraSession.getCluster(configuration).connect();
-		assertNotNull(session);
+		try(Session session = cassandraSession.getConnectionManager(configuration, "test").getSession()){
+			assertNotNull(session);
+		}
 	}
 
 }

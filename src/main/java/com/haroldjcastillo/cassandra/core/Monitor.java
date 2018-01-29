@@ -1,5 +1,7 @@
 package com.haroldjcastillo.cassandra.core;
 
+import org.apache.log4j.Logger;
+
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Host;
 import com.datastax.driver.core.HostDistance;
@@ -7,7 +9,15 @@ import com.datastax.driver.core.PoolingOptions;
 import com.datastax.driver.core.Session;
 import com.datastax.driver.core.policies.LoadBalancingPolicy;
 
+/**
+ * The Class Monitor, allows monitor a session.
+ *
+ * @author harold.castillo
+ * @since 03-03-2017 04:26:39 PM
+ */
 public class Monitor implements Runnable {
+
+	private static final Logger LOGGER = Logger.getLogger(Monitor.class);
 
 	private final Cluster cluster;
 
@@ -20,18 +30,18 @@ public class Monitor implements Runnable {
 
 	@Override
 	public void run() {
-
 		final LoadBalancingPolicy loadBalancingPolicy = this.cluster.getConfiguration().getPolicies()
 				.getLoadBalancingPolicy();
 		final PoolingOptions poolingOptions = this.cluster.getConfiguration().getPoolingOptions();
-
-		Session.State state = this.session.getState();
+		final Session.State state = this.session.getState();
+		
 		for (Host host : state.getConnectedHosts()) {
-			HostDistance distance = loadBalancingPolicy.distance(host);
-			int connections = state.getOpenConnections(host);
-			int inFlightQueries = state.getInFlightQueries(host);
-			System.out.printf("%s connections=%d, current load=%d, maxload=%d%n", host, connections, inFlightQueries,
-					connections * poolingOptions.getMaxRequestsPerConnection(distance));
+			final HostDistance distance = loadBalancingPolicy.distance(host);
+			final int connections = state.getOpenConnections(host);
+			final int inFlightQueries = state.getInFlightQueries(host);
+			final String stateResult = String.format("%s connections=%d, current load=%d, maxload=%d%n", host,
+					connections, inFlightQueries, connections * poolingOptions.getMaxRequestsPerConnection(distance));
+			LOGGER.info(stateResult);
 		}
 	}
 

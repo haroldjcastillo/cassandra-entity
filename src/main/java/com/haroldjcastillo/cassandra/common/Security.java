@@ -1,5 +1,11 @@
 package com.haroldjcastillo.cassandra.common;
 
+/**
+ * The Enum Security.
+ *
+ * @author harold.castillo
+ * @since 03-03-2017 04:26:28 PM
+ */
 public enum Security {
 
 	AES("AES"),

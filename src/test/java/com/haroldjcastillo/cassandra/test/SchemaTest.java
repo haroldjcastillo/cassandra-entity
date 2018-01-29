@@ -9,26 +9,39 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.datastax.driver.core.Session;
+import com.haroldjcastillo.cassandra.common.Configuration;
 import com.haroldjcastillo.cassandra.core.CassandraSession;
-import com.haroldjcastillo.cassandra.jmx.Configuration;
 
+/**
+ * The Class SchemaTest, probes the creation of code lines from a specific fila.
+ *
+ * @author harold.castillo
+ * @since 03-14-2017 02:19:54 PM
+ */
 public class SchemaTest {
 
 	private static Configuration configuration;
+	
+	private static final String TEST = "test";
+	
+	private static final String[] keyspaces = { TEST };
 
 	@BeforeClass
 	public static void beforeClass() {
 		configuration = new Configuration("SchemaTest");
+		configuration.setName("SchemaTest");
+		configuration.setKeyspaces(keyspaces);
 	}
 
 	@Test
 	public void createSchema() {
-		final Session session = CassandraSession.getInstance().getCluster(configuration).connect();
-		final InputStream schemaInput = this.getClass().getClassLoader().getResourceAsStream("schema.cql");
-		SchemaTest.executeCqlFile(schemaInput, session);
+		try(Session session = CassandraSession.getInstance().getConnectionManager(configuration, TEST).getSession()) {
+			final InputStream schemaInput = this.getClass().getClassLoader().getResourceAsStream("schema.cql");
+			SchemaTest.executeCqlFile(schemaInput, session);
+		};
 	}
 
-	private static String executeCqlFile(final InputStream is, final Session session) {
+	public static String executeCqlFile(final InputStream is, final Session session) {
 
 		final StringBuilder sb = new StringBuilder();
 		BufferedReader br = null;

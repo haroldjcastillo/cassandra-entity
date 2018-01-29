@@ -1,6 +1,14 @@
 package com.haroldjcastillo.cassandra.jmx;
 
+/**
+ * The Interface ConfigurationMXBean.
+ *
+ * @author harold.castillo
+ * @since 03-03-2017 04:28:55 PM
+ */
 public interface ConfigurationMXBean {
+	
+	String getMetadata();
 
 	long getExecutionBlockcount();
 
@@ -11,6 +19,8 @@ public interface ConfigurationMXBean {
 	long getKeepAliveTime();
 	
 	long getThreadSleep();
+	
+	String[] getKeyspaces();
 
 	int getConnectionsPerHostLocalMin();
 	
@@ -59,6 +69,8 @@ public interface ConfigurationMXBean {
 	void setMaxRequestsPerConnectioRemote(int value);
 
 	void setHostnames(String[] value);
+	
+	void setKeyspaces(String[] value);
 	
 	void setUsername(String value);
 	

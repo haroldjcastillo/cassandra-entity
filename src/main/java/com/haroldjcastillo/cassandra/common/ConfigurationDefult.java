@@ -1,5 +1,11 @@
 package com.haroldjcastillo.cassandra.common;
 
+/**
+ * The Interface ConfigurationDefult.
+ *
+ * @author harold.castillo
+ * @since 03-03-2017 04:26:23 PM
+ */
 public interface ConfigurationDefult {
 	
 	long EXECUTIONBLOCKCOUNT = 2000;

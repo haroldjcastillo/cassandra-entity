@@ -12,6 +12,14 @@ import javax.management.ObjectName;
 
 import org.apache.log4j.Logger;
 
+import com.datastax.driver.core.Configuration;
+
+/**
+ * The Class AbstractMBean.
+ *
+ * @author harold.castillo
+ * @since 03-03-2017 04:28:33 PM
+ */
 public abstract class AbstractMBean {
 	
 	protected static final Logger LOGGER = Logger.getLogger(Configuration.class);
@@ -30,7 +38,7 @@ public abstract class AbstractMBean {
 	protected void registerMBean() {
 
 		try {
-			objectName = new ObjectName("org.cassandra.entity:type=" + name);
+			objectName = new ObjectName("hn.com.tigo.cpe.cassandra.entity:type=" + name);
 			if(!MBS.isRegistered(objectName)){
 				MBS.registerMBean(this, objectName);
 			}

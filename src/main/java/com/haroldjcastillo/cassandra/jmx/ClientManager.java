@@ -1,7 +1,10 @@
 package com.haroldjcastillo.cassandra.jmx;
 
 /**
+ * The Class ClientManager.
+ *
  * @author harold.castillo
+ * @since 03-03-2017 04:28:40 PM
  */
 public class ClientManager implements ClientManagerMXBean {
 

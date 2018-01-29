@@ -8,19 +8,25 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 import java.util.UUID;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.ConsistencyLevel;
-import com.datastax.driver.core.Session;
 import com.datastax.driver.core.querybuilder.Delete;
 import com.datastax.driver.core.querybuilder.Select;
 import com.datastax.driver.core.utils.UUIDs;
+import com.haroldjcastillo.cassandra.common.Configuration;
+import com.haroldjcastillo.cassandra.common.ConnectionManager;
 import com.haroldjcastillo.cassandra.core.CassandraSession;
-import com.haroldjcastillo.cassandra.jmx.Configuration;
+import com.haroldjcastillo.cassandra.dao.EntityBase;
 
+/**
+ * The Class EntityTest, probes the functionalities when we need to create a
+ * entity and delegate the work to {@link EntityBase} instance.
+ *
+ * @author harold.castillo
+ * @since 03-14-2017 11:15:43 AM
+ */
 public class EntityTest {
 
 	private static final UUID TABLETEST_ID = UUIDs.timeBased();
@@ -29,43 +35,44 @@ public class EntityTest {
 
 	private static final String TABLE = "table_test";
 
-	private static final String TEST = "test";
-	
-	private static Cluster cluster;
-	
 	private static Configuration configuration;
-	
+
+	private static final String TEST = "test";
+
+	private static final String[] keyspaces = { TEST };
+
 	@BeforeClass
 	public static void beforeClass() {
-		configuration = new Configuration("EntityTest");
-		cluster = CassandraSession.getInstance().getCluster(configuration);
+		configuration = new Configuration("SchemaTest");
+		configuration.setName("EntityTest");
+		configuration.setKeyspaces(keyspaces);
 	}
 
-	@Before
+	@Test
 	public void saveEntityTest() {
-		final Session session = cluster.connect(TEST);
-		final TableTest tableTest = new TableTest(session);
+		final ConnectionManager connectionManager = CassandraSession.getInstance().getConnectionManager(configuration, TEST);
+		final TableTest tableTest = new TableTest(connectionManager);
 		tableTest.setId(TABLETEST_ID);
 		tableTest.setName(TABLETEST_NAME);
 		tableTest.setDescription("Description_" + Math.random());
-		tableTest.save(tableTest, ConsistencyLevel.ONE);
+		tableTest.execute(tableTest, ConsistencyLevel.ONE);
 	}
 
 	@Test
 	public void selectQueryTest() {
-		final Session session = cluster.connect(TEST);
+		final ConnectionManager connectionManager = CassandraSession.getInstance().getConnectionManager(configuration, TEST);
 		final Select.Where select = select().from(TABLE).where(eq("id", TABLETEST_ID));
-		final TableTest tableTestEnity = new TableTest(session);
-		final List<TableTest> tableTestList = tableTestEnity.find(select, ConsistencyLevel.ONE);
+		final TableTest tableTestEnity = new TableTest(connectionManager);
+		final List<TableTest> tableTestList = tableTestEnity.execute(select, ConsistencyLevel.ONE);
 		assertTrue(!tableTestList.isEmpty());
 	}
 
 	@Test
 	public void deleteQueryTest() {
-		final Session session = cluster.connect(TEST);
+		final ConnectionManager connectionManager = CassandraSession.getInstance().getConnectionManager(configuration, TEST);
 		final Delete.Where delete = delete().all().from(TABLE).where(eq("id", TABLETEST_ID));
-		final TableTest tableTestEnity = new TableTest(session);
-		tableTestEnity.delete(delete, ConsistencyLevel.ONE);
+		final TableTest tableTestEnity = new TableTest(connectionManager);
+		tableTestEnity.execute(delete, ConsistencyLevel.ONE);
 	}
 
 }

@@ -1,6 +1,9 @@
 # cassandra-entity
-* Allows to reduce code and re-create POJO's and Entities, you need to create one class.
-* Reduce the creation of DTO and Entities of way independet.
+- Builded with ♥ in Java 1.8.
+- Allows to reduce code and re-create POJO's and Entities, you need to create one class.
+- Reduce the creation of DTO and Entities of independent way.
+- Efficient management of connections and sessions.
+- Compliance with cassandra-driver mapper.
 
 ```
 mvn clean install
@@ -12,20 +15,31 @@ final CassandraSession cassandraSession = CassandraSession.getInstance();
 ```
 
 ### 2. Create configuration
+
+Create multiple configurations for each keyspace
+
 ```
-private static Configuration configuration = new Configuration("ConfigurationName");
+private static final String[] keyspaces = { 'test' };
+
+final Configuration configuration = new Configuration("SchemaTest");
+configuration.setName("EntityTest");
+configuration.setKeyspaces(keyspaces);
 ```
 
-### 3. Get session
+### 3. Create a connection
+
+This connection it's the same for the keyspace `test` in all the declarations like that.
+
 ```
-final Session session = cassandraSession.getCluster(configuration).connect();
+final ConnectionManager connectionManager = CassandraSession.getInstance().getConnectionManager(configuration, 'test');
 ```
 
 ## Done! Execute a insert
+
 ```
-final TableTest tableTest = new TableTest(session);
-tableTest.setId(TABLETEST_ID);
-tableTest.setName(TABLETEST_NAME);
-tableTest.setDescription("Description_" + Math.random());
-tableTest.save(tableTest, ConsistencyLevel.ONE);
+final TableTest tableTest = new TableTest(connectionManager);
+tableTest.setId(UUIDs.timeBased());
+tableTest.setName("Some name");
+tableTest.setDescription("Some description");
+tableTest.execute(tableTest, ConsistencyLevel.ONE);
 ```
